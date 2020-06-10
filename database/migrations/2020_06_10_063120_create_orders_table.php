@@ -19,6 +19,7 @@ class CreateOrdersTable extends Migration
             $table->float('price');
             $table->tinyInteger('status');
             $table->string('address');
+            $table->integer('amount');
             $table->timestamps();
         });
     }
