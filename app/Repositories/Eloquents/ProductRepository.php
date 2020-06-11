@@ -51,4 +51,8 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
         return Product::whereDoesntHave('sales', $queryInTime)
         ->paginate(config('setting.paginate_products'));
     }
+
+    public function getPaginateByCategoryId($category_id) {
+        return Product::where('category_id', $category_id)->paginate(config('setting.paginate_products'));
+    }
 }

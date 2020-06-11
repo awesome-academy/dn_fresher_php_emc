@@ -9,10 +9,14 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="breadcrumb__text">
-                    <h2>{{ trans('messages.products') }}</h2>
+                    <h2>
+                        {{ Route::current()->getName() != 'category.index' ? $categoryName : trans('messages.products') }}
+                    </h2>
                     <div class="breadcrumb__option">
                         <a href="{{ Route('shop.index.index') }}">{{ trans('messages.home') }}</a>
-                        {{-- <span>Products</span> --}}
+                        <span>
+                            {{ trans('messages.product') }}
+                        </span>
                     </div>
                 </div>
             </div>

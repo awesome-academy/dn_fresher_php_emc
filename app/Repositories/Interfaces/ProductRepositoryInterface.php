@@ -13,4 +13,6 @@ interface ProductRepositoryInterface
     public function getSalesInTime();
 
     public function getOutSales();
+
+    public function getPaginateByCategoryId($category_id);
 }

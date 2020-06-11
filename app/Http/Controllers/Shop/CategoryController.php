@@ -30,4 +30,13 @@ class CategoryController extends Controller
 
         return view('shop.category.index', compact('categories', 'sales', 'products'));
     }
+
+    public function show($category_id) {
+        $categories = $this->categoryRepository->getAllWithChildren();
+        $sales = $this->productRepository->getSalesInTime();
+        $categoryName = $this->categoryRepository->find($category_id)->name;
+        $products = $this->productRepository->getPaginateByCategoryId($category_id);
+
+        return view('shop.category.show', compact('categories', 'sales', 'products', 'categoryName'));
+    }
 }

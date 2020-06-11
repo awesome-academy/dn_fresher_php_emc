@@ -118,11 +118,11 @@
                                     $hassubs = !$category->children->isEmpty() ? 'hassubs' : '';
                                 @endphp
                                 <li class="{{ $hassubs }}">
-                                    <a href="#">{{ $category->name }}<i class="arrow_carrot-right"></a></i>
+                                    <a href="{{ route('category.show', $category->id) }}">{{ $category->name }}<i class="arrow_carrot-right"></a></i>
                                     @if (!$category->children->isEmpty())
                                     <ul class="{{ Route::current()->getName() != 'shop.index.index' ? 'hassups__not-index' : ''}}">
                                         @foreach ($category->children as $children)
-                                            <li><a href="#">{{ $children->name }}</a></li>
+                                            <li><a href="{{ route('category.show', $children->id) }}">{{ $children->name }}</a></li>
                                         @endforeach
                                     </ul>
                                     @endif
