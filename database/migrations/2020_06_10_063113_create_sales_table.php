@@ -19,7 +19,6 @@ class CreateSalesTable extends Migration
             $table->integer('discount');
             $table->date('start_time');
             $table->date('end_time');
-            $table->timestamps();
         });
     }
 
