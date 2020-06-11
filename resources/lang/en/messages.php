@@ -30,4 +30,6 @@ return [
     'fresh' => '100% Fresh',
     'free_pickup_delivery' => 'Free Pickup and Delivery Available',
     'shop_now' => 'SHOP NOW',
+    'sale_off' => 'Sale Off',
+    'product' => 'Products',
 ];

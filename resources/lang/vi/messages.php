@@ -30,5 +30,6 @@ return [
     'fresh' => 'Tươi 100%',
     'free_pickup_delivery' => 'Nhận và giao hàng miễn phí',
     'shop_now' => 'MUA NGAY',
-
+    'sale_off' => 'Giảm giá',
+    'product' => 'Sản phẩm',
 ];

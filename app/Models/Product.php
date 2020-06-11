@@ -32,9 +32,9 @@ class Product extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function sale()
+    public function sales()
     {
-        return $this->belongsTo(Sale::class);
+        return $this->hasMany(Sale::class);
     }
 
     public function category()
@@ -62,5 +62,10 @@ class Product extends Model
         return $status == ProductEnums::InStock
         ? ProductEnums::fromValue(ProductEnums::InStock)->description
         : ProductEnums::fromValue(ProductEnums::OutOfStock)->description;
+    }
+
+    public function getPriceAttribute($price)
+    {
+        return number_format($price, 2, '.', '');
     }
 }

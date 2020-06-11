@@ -29,4 +29,26 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     public function getByCategoryId($category_id) {
         return Product::where('category_id', $category_id)->get();
     }
+
+    public function getSalesInTime() {
+        $now = Carbon::now()->toDateString();
+        $queryInTime = function($query) use ($now) {
+            $query->where('start_time', '<=', $now)
+            ->where('end_time', '>=', $now);
+        };
+
+        return Product::with(['sales' => $queryInTime])
+        ->whereHas('sales', $queryInTime)->get();
+    }
+
+    public function getOutSales() {
+        $now = Carbon::now()->toDateString();
+        $queryInTime = function($query) use ($now) {
+            $query->where('start_time', '<=', $now)
+            ->where('end_time', '>=', $now);
+        };
+
+        return Product::whereDoesntHave('sales', $queryInTime)
+        ->paginate(config('setting.paginate_products'));
+    }
 }
