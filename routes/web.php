@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::namespace('Shop')->group(function(){
+    Route::get('/',[
+        'uses' => 'IndexController@index',
+        'as' => 'shop.index.index'
+    ]);
 });
