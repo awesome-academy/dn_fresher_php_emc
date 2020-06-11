@@ -10,10 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::namespace('Shop')->group(function(){
+Route::group(['namespace' => 'Shop', 'middleware' => 'locale'], function(){
+    Route::get('change-language/{language}', 'IndexController@changeLanguage')->name('user.change-language');
     Route::get('/',[
         'uses' => 'IndexController@index',
         'as' => 'shop.index.index'
+    ]);
+    Route::resource('product', 'ProductController')->only([
+        'show',
     ]);
 });

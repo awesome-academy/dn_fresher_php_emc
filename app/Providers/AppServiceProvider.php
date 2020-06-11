@@ -9,6 +9,7 @@ class AppServiceProvider extends ServiceProvider
     protected $repositories = [
         'CategoryRepository',
         'ProductRepository',
+        'ProductUserRatingRepository',
     ];
 
     /**
