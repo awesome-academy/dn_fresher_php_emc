@@ -6,6 +6,11 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+    protected $repositories = [
+        'CategoryRepository',
+        'ProductRepository',
+    ];
+
     /**
      * Register any application services.
      *
@@ -13,7 +18,21 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->registerRepositories();
+    }
+
+    /**
+     * register repositories class dependency.
+     * example change drive to call method only change.
+     */
+    private function registerRepositories()
+    {
+        foreach ($this->repositories as $repository) {
+            $this->app->bindIf(
+                'App\\Repositories\\Interfaces\\' . $repository . 'Interface',
+                'App\\Repositories\\Eloquents\\'. $repository
+            );
+        }
     }
 
     /**

@@ -2900,6 +2900,46 @@ ol {
 	letter-spacing: 2px;
 }
 
+.hero__categories li {
+	position: relative;
+}
+.hero__categories li ul
+{
+	display: block;
+	position: absolute;
+	top: 35px;
+	left: 100%;
+	visibility: hidden;
+	opacity: 0;
+	width: 100%;
+	background: #FFFFFF;
+	box-shadow: 0px 10px 25px rgba(0,0,0,0.1);
+	z-index: 10;
+}
+.hero__categories li:hover > ul
+{
+	top: 0;
+	visibility: visible;
+	opacity: 1;
+}
+
+.hero__categories li:hover > a
+{
+	color:#7fad39;
+}
+
+.hero__categories li a i{
+    display: none;
+    position: absolute;
+    top: 25%;
+    right: 10px;
+    font-size: 18px;
+}
+
+.hero__categories li.hassubs > a i {
+    display: block;
+}
+
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
 
 @media only screen and (min-width: 1200px) {
