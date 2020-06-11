@@ -7,9 +7,9 @@ use App\Models\Product;
 
 class Sale extends Model
 {
-    protected $table = 'comments';
+    protected $table = 'sales';
     protected $primaryKey = 'id';
-    public $timestamps = true;
+    public $timestamps = false;
 
     protected $fillable = [
         'product_id',

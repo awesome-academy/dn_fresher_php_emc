@@ -10,7 +10,7 @@ use App\Models\Category;
 
 class Product extends Model
 {
-    protected $table = 'order_items';
+    protected $table = 'products';
     protected $primaryKey = 'id';
     public $timestamps = true;
 
