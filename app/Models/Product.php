@@ -7,6 +7,8 @@ use App\Models\Comment;
 use App\Models\Order;
 use App\Models\Sale;
 use App\Models\Category;
+use App\Models\ImageProduct;
+use App\Enums\ProductEnums;
 
 class Product extends Model
 {
@@ -17,9 +19,11 @@ class Product extends Model
     protected $fillable = [
         'name',
         'picture',
+        'description',
         'price',
         'rating',
         'amount',
+        'status',
         'category_id'
     ];
 
@@ -41,5 +45,22 @@ class Product extends Model
     public function orders()
     {
         return $this->belongsToMany(Order::class, 'orders_products', 'product_id', 'order_id');
+    }
+
+    public function images()
+    {
+        return $this->hasMany(ImageProduct::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'products_users_rating', 'user_id', 'product_id');
+    }
+
+    public function getStatusAttribute($status)
+    {
+        return $status == ProductEnums::InStock
+        ? ProductEnums::fromValue(ProductEnums::InStock)->description
+        : ProductEnums::fromValue(ProductEnums::OutOfStock)->description;
     }
 }

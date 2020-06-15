@@ -11,7 +11,7 @@
                     @foreach ($hotTrendProduct as $product)
                     <div class="col-lg-3">
                     <div class="categories__item set-bg" data-setbg="assets/img/product/{{ $product->picture }}">
-                            <h5><a href="#">{{ $product->name }}</a></h5>
+                            <h5><a href="{{ route('product.show', $product->id) }}">{{ $product->name }}</a></h5>
                         </div>
                     </div>
                     @endforeach

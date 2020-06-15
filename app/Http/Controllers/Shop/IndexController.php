@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Shop;
 
+use Session;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Interfaces\CategoryRepositoryInterface as CategoryRepository;
@@ -25,5 +26,12 @@ class IndexController extends Controller
         $hotTrendProduct = $this->productRepository->getHotTrend();
 
         return view('shop.index.index', compact('categories', 'hotTrendProduct'));
+    }
+
+    public function changeLanguage($language)
+    {
+        Session::put('website_language', $language);
+
+        return redirect()->back();
     }
 }

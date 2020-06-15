@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="UTF-8">
@@ -29,57 +29,6 @@
         <div class="loader"></div>
     </div>
 
-    <!-- Humberger Begin -->
-    <div class="humberger__menu__overlay"></div>
-    <div class="humberger__menu__wrapper">
-        <div class="humberger__menu__logo">
-            <a href="#"><img src="assets/img/logo.png" alt=""></a>
-        </div>
-        <div class="humberger__menu__cart">
-            <ul>
-                <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
-            </ul>
-            <div class="header__cart__price">item: <span>$150.00</span></div>
-        </div>
-        <div class="humberger__menu__widget">
-            <div class="header__top__right__language">
-                <img src="assets/img/language.png" alt="">
-                <div>English</div>
-                <span class="arrow_carrot-down"></span>
-                <ul>
-                    <li><a href="#">Vietnamese</a></li>
-                    <li><a href="#">English</a></li>
-                </ul>
-            </div>
-            <div class="header__top__right__auth">
-                <a href="#"><i class="fa fa-user"></i> Login</a>
-            </div>
-        </div>
-        <nav class="humberger__menu__nav mobile-menu">
-            <ul>
-                <li class="active"><a href="./index.html">Home</a></li>
-                <li><a href="./shop-grid.html">Categories</a></li>
-                <li><a href="./blog.html">Blog</a></li>
-                <li><a href="./contact.html">Contact</a></li>
-            </ul>
-        </nav>
-        <div id="mobile-menu-wrap"></div>
-        <div class="header__top__right__social">
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-linkedin"></i></a>
-            <a href="#"><i class="fa fa-pinterest-p"></i></a>
-        </div>
-        <div class="humberger__menu__contact">
-            <ul>
-                <li><i class="fa fa-envelope"></i> flowershop@gmail.com</li>
-                <li>Free Shipping for all Order of $99</li>
-            </ul>
-        </div>
-    </div>
-    <!-- Humberger End -->
-
     <!-- Header Section Begin -->
     <header class="header">
         <div class="header__top">
@@ -89,7 +38,7 @@
                         <div class="header__top__left">
                             <ul>
                                 <li><i class="fa fa-envelope"></i> flowershop@gmail.com</li>
-                                <li>Free Shipping for all Order of $99</li>
+                                <li>{{ trans('messages.free_ship') }}</li>
                             </ul>
                         </div>
                     </div>
@@ -102,16 +51,16 @@
                                 <a href="#"><i class="fa fa-pinterest-p"></i></a>
                             </div>
                             <div class="header__top__right__language">
-                                <img src="assets/img/language.png" alt="">
-                                <div>English</div>
+                                <img src="/assets/img/language.png" alt="">
+                                <div>{{ trans('messages.en') }}</div>
                                 <span class="arrow_carrot-down"></span>
                                 <ul>
-                                    <li><a href="#">Vietnamese</a></li>
-                                    <li><a href="#">English</a></li>
+                                    <li><a href="{{ route('user.change-language', ['vi']) }}">{{ trans('messages.vi') }}</a></li>
+                                    <li><a href="{{ route('user.change-language', ['en']) }}">{{ trans('messages.en') }}</a></li>
                                 </ul>
                             </div>
                             <div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user"></i> Login</a>
+                                <a href="#"><i class="fa fa-user"></i> {{ trans('messages.login') }}</a>
                             </div>
                         </div>
                     </div>
@@ -122,16 +71,16 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="./index.html"><img src="assets/img/logo.png" alt=""></a>
+                        <a href="./index.html"><img src="/assets/img/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="./index.html">Home</a></li>
-                            <li><a href="#">Category</a></li>
-                            <li><a href="./blog.html">Blog</a></li>
-                            <li><a href="./contact.html">Contact</a></li>
+                            <li class="active"><a href="{{ route('shop.index.index') }}">{{ trans('messages.home') }}</a></li>
+                            <li><a href="./shop-grid.html">{{ trans('messages.categories') }}</a></li>
+                            <li><a href="./blog.html">{{ trans('messages.blog') }}</a></li>
+                            <li><a href="./contact.html">{{ trans('messages.contact') }}</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -141,7 +90,7 @@
                             <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
                             <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
                         </ul>
-                        <div class="header__cart__price">item: <span>$150.00</span></div>
+                        <div class="header__cart__price">{{ trans('messages.cart') }}: <span>$150.00</span></div>
                     </div>
                 </div>
             </div>
@@ -153,14 +102,14 @@
     <!-- Header Section End -->
 
     <!-- Hero Section Begin -->
-    <section class="hero">
+<section class="hero {{ Route::current()->getName() != 'shop.index.index' ? 'hero-normal' : ''}}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
                     <div class="hero__categories">
                         <div class="hero__categories__all">
                             <i class="fa fa-bars"></i>
-                            <span>All categories</span>
+                            <span>{{ trans('messages.categories') }}</span>
                         </div>
                         <ul>
                             @foreach ($categories as $category)
@@ -187,11 +136,11 @@
                         <div class="hero__search__form">
                             <form action="#">
                                 <div class="hero__search__categories">
-                                    All Categories
+                                    {{ trans('messages.categories') }}
                                     <span class="arrow_carrot-down"></span>
                                 </div>
-                                <input type="text" placeholder="What do yo u need?">
-                                <button type="submit" class="site-btn">SEARCH</button>
+                                <input type="text" placeholder="{{ trans('messages.what_need') }}">
+                                <button type="submit" class="site-btn">{{ trans('messages.search') }}</button>
                             </form>
                         </div>
                         <div class="hero__search__phone">
@@ -200,18 +149,20 @@
                             </div>
                             <div class="hero__search__phone__text">
                                 <h5>+84906498888</h5>
-                                <span>support 24/7 time</span>
+                                <span>{{ trans('messages.support ')}}</span>
                             </div>
                         </div>
                     </div>
-                    <div class="hero__item set-bg" data-setbg="assets/img/hero/banner.jpg">
+                    @if (Route::current()->getName() == 'shop.index.index')
+                    <div class="hero__item set-bg" data-setbg="/assets/img/hero/banner.jpg">
                         <div class="hero__text">
-                            <span>fresh flower</span>
-                            <h2>Flower <br />100% Fresh</h2>
-                            <p>Free Pickup and Delivery Available</p>
-                            <a href="#" class="primary-btn">SHOP NOW</a>
+                            <span>{{ trans('messages.fresh_flower ')}}</span>
+                            <h2>{{ trans('messages.flowers')}} <br />{{ trans('messages.fresh')}}</h2>
+                            <p>{{ trans('messages.free_pickup_delivery')}}</p>
+                            <a href="#" class="primary-btn">{{ trans('messages.shop_now') }}</a>
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -227,7 +178,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__about__logo">
-                            <a href="./index.html"><img src="assets/img/logo.png" alt=""></a>
+                            <a href="./index.html"><img src="/assets/img/logo.png" alt=""></a>
                         </div>
                         <ul>
                             <li>Address: 16 Lý Thường Kiệt</li>
@@ -284,7 +235,7 @@
                                 <i class="fa fa-heart" aria-hidden="true"></i> by <a href="#" target="_blank">Sun*</a>
                             </p>
                         </div>
-                        <div class="footer__copyright__payment"><img src="assets/img/payment-item.png" alt=""></div>
+                        <div class="footer__copyright__payment"><img src="/assets/img/payment-item.png" alt=""></div>
                     </div>
                 </div>
             </div>

@@ -35,4 +35,9 @@ class User extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function products()
+    {
+        return $this->belongsToMany(User::class, 'products_users_rating', 'user_id', 'product_id');
+    }
 }
