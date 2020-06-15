@@ -106,7 +106,7 @@
                                 <div>English</div>
                                 <span class="arrow_carrot-down"></span>
                                 <ul>
-                                    <li><a href="#">Spanis</a></li>
+                                    <li><a href="#">Vietnamese</a></li>
                                     <li><a href="#">English</a></li>
                                 </ul>
                             </div>
@@ -163,8 +163,22 @@
                             <span>All categories</span>
                         </div>
                         <ul>
-                            <li><a href="#">Flower 1</a></li>
-                            <li><a href="#">Flower 2</a></li>
+                            @foreach ($categories as $category)
+                                @php
+                                    $hassubs = !$category->children->isEmpty() ? 'hassubs' : '';
+                                @endphp
+                                <li class="{{ $hassubs }}">
+                                    <a href="#">{{ $category->name }}<i class="arrow_carrot-right"></a></i>
+                                    @if (!$category->children->isEmpty())
+                                    <ul>
+                                        @foreach ($category->children as $children)
+                                            <li><a href="#">{{ $children->name }}</a></li>
+                                        @endforeach
+                                    </ul>
+                                    @endif
+                                </li>
+
+                            @endforeach
                         </ul>
                     </div>
                 </div>

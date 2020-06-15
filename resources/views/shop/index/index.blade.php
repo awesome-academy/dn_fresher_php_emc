@@ -8,21 +8,13 @@
         <div class="container">
             <div class="row">
                 <div class="categories__slider owl-carousel">
+                    @foreach ($hotTrendProduct as $product)
                     <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="assets/img/categories/cat-1.jpg">
-                            <h5><a href="#">Flower 1</a></h5>
+                    <div class="categories__item set-bg" data-setbg="assets/img/product/{{ $product->picture }}">
+                            <h5><a href="#">{{ $product->name }}</a></h5>
                         </div>
                     </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="assets/img/categories/cat-2.jpg">
-                            <h5><a href="#">Flower 2</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="assets/img/categories/cat-3.jpg">
-                            <h5><a href="#">Flower 3</a></h5>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
