@@ -51,8 +51,8 @@
                                 <a href="#"><i class="fa fa-pinterest-p"></i></a>
                             </div>
                             <div class="header__top__right__language">
-                                <img src="/assets/img/language.png" alt="">
-                                <div>{{ trans('messages.en') }}</div>
+                                <img src="/assets/img/{{ Lang::locale() }}.png" alt="">
+                                <div>{{ trans('messages.'.Lang::locale()) }}</div>
                                 <span class="arrow_carrot-down"></span>
                                 <ul>
                                     <li><a href="{{ route('user.change-language', ['vi']) }}">{{ trans('messages.vi') }}</a></li>
@@ -78,7 +78,7 @@
                     <nav class="header__menu">
                         <ul>
                             <li class="active"><a href="{{ route('shop.index.index') }}">{{ trans('messages.home') }}</a></li>
-                            <li><a href="./shop-grid.html">{{ trans('messages.categories') }}</a></li>
+                            <li><a href="{{ route('category.index') }}">{{ trans('messages.categories') }}</a></li>
                             <li><a href="./blog.html">{{ trans('messages.blog') }}</a></li>
                             <li><a href="./contact.html">{{ trans('messages.contact') }}</a></li>
                         </ul>
@@ -115,11 +115,12 @@
                             @foreach ($categories as $category)
                                 @php
                                     $hassubs = !$category->children->isEmpty() ? 'hassubs' : '';
+                                    $hassubs = !$category->children->isEmpty() ? 'hassubs' : '';
                                 @endphp
                                 <li class="{{ $hassubs }}">
                                     <a href="#">{{ $category->name }}<i class="arrow_carrot-right"></a></i>
                                     @if (!$category->children->isEmpty())
-                                    <ul>
+                                    <ul class="{{ Route::current()->getName() != 'shop.index.index' ? 'hassups__not-index' : ''}}">
                                         @foreach ($category->children as $children)
                                             <li><a href="#">{{ $children->name }}</a></li>
                                         @endforeach
@@ -149,14 +150,14 @@
                             </div>
                             <div class="hero__search__phone__text">
                                 <h5>+84906498888</h5>
-                                <span>{{ trans('messages.support ')}}</span>
+                                <span>{{ trans('messages.support')}}</span>
                             </div>
                         </div>
                     </div>
                     @if (Route::current()->getName() == 'shop.index.index')
                     <div class="hero__item set-bg" data-setbg="/assets/img/hero/banner.jpg">
                         <div class="hero__text">
-                            <span>{{ trans('messages.fresh_flower ')}}</span>
+                            <span>{{ trans('messages.fresh_flower')}}</span>
                             <h2>{{ trans('messages.flowers')}} <br />{{ trans('messages.fresh')}}</h2>
                             <p>{{ trans('messages.free_pickup_delivery')}}</p>
                             <a href="#" class="primary-btn">{{ trans('messages.shop_now') }}</a>

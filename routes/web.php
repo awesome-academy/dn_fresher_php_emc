@@ -19,4 +19,7 @@ Route::group(['namespace' => 'Shop', 'middleware' => 'locale'], function(){
     Route::resource('product', 'ProductController')->only([
         'show',
     ]);
+    Route::resource('category', 'CategoryController')->only([
+        'index', 'show',
+    ]);
 });

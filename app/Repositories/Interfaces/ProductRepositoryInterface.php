@@ -9,4 +9,8 @@ interface ProductRepositoryInterface
     public function showDetail($product_id);
 
     public function getByCategoryId($category_id);
+
+    public function getSalesInTime();
+
+    public function getOutSales();
 }

@@ -43,17 +43,23 @@
                 <div class="product__details__text">
                     <h3>{{ $product->name }}</h3>
                     <div class="product__details__rating">
-                        @php
-                        $rating = round($product->rating,1);
-                        $arrRate = explode('.',$rating);
-                        @endphp
-                        @for ($i = 1; $i <= $arrRate[0]; $i++)
-                            <i class="fa fa-star"></i>
-                        @endfor
-                        @if ($arrRate[1] > 3) <i class="fa fa-star-half-o"></i> @endif
+                        @if ($product->rating % 2 != 0)
+                            @php
+                            $rating = round($product->rating,1);
+                            $arrRate = explode('.',$rating);
+                            @endphp
+                            @for ($i = 1; $i <= $arrRate[0]; $i++)
+                                <i class="fa fa-star"></i>
+                            @endfor
+                            @if ($arrRate[1] > 3) <i class="fa fa-star-half-o"></i> @endif
+                        @else
+                            @for ($i = 1; $i <= $product->rating; $i++)
+                                <i class="fa fa-star"></i>
+                            @endfor
+                        @endif
                         <span>({{ $countReview }} {{ trans('messages.reviews') }})</span>
                     </div>
-                    <div class="product__details__price">${{ number_format($product->price, 2, '.', '') }}</div>
+                    <div class="product__details__price">${{ $product->price }}</div>
                     <p>{{ $product->description }}</p>
                     <div class="product__details__quantity">
                         <div class="quantity">
@@ -62,11 +68,11 @@
                             </div>
                         </div>
                     </div>
-                <a href="#" class="primary-btn">{{ trans('messages.add_to_cart') }}</a>
+                    <a href="#" class="primary-btn">{{ trans('messages.add_to_cart') }}</a>
                     <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                     <ul>
                         <li><b>{{ trans('messages.availability') }}</b> <span>{{ $product->status }}</span></li>
-                    <li><b>{{ trans('messages.shipping') }}</b> <span>{{ trans('messages.1_day_shipping') }}<samp>{{ trans('messages.free_pickup') }}</samp></span></li>
+                        <li><b>{{ trans('messages.shipping') }}</b> <span>{{ trans('messages.1_day_shipping') }}<samp>{{ trans('messages.free_pickup') }}</samp></span></li>
                         <li><b>{{ trans('messages.share_on') }}</b>
                             <div class="share">
                                 <a href="#"><i class="fa fa-facebook"></i></a>
