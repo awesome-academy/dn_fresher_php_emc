@@ -3,10 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Auth\Authenticatable;
 use App\Models\Comment;
 
-class User extends Model
+class User extends Model implements AuthenticatableContract
 {
+    use Authenticatable;
+
     protected $table = 'users';
     protected $primaryKey = 'id';
     public $timestamps = false;
@@ -18,7 +22,8 @@ class User extends Model
         'birthday',
         'address',
         'phone',
-        'avatar'
+        'avatar',
+        'role'
     ];
 
     protected $hidden = [
