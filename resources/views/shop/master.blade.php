@@ -59,9 +59,20 @@
                                     <li><a href="{{ route('user.change-language', ['en']) }}">{{ trans('messages.en') }}</a></li>
                                 </ul>
                             </div>
-                            <div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user"></i> {{ trans('messages.login') }}</a>
-                            </div>
+                            @guest
+                                <div class="header__top__right__auth">
+                                    <a href="{{ route('login.index') }}"><i class="fa fa-user"></i> {{ trans('messages.login') }}</a>
+                                </div>
+                            @else
+                                <div class="header__top__right__language box-user">
+                                    <div><i class="fa fa-user"></i>&nbsp;{{ auth()->user()->fullname }}</div>
+                                    <span class="arrow_carrot-down"></span>
+                                    <ul>
+                                        <li><a href="#">{{ trans('messages.auth.profile') }}</a></li>
+                                        <li><a href="{{ route('logout.index') }}" id="logout">{{ trans('messages.auth.logout') }}</a></li>
+                                    </ul>
+                                </div>
+                            @endguest
                         </div>
                     </div>
                 </div>

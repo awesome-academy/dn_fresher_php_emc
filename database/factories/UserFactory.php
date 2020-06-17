@@ -26,5 +26,6 @@ $factory->define(User::class, function (Faker $faker) {
         'address' => 'Viet Nam',
         'phone' => $faker->phoneNumber,
         'avatar' => 'avatar.jpg',
+        'role' => 0,
     ];
 });

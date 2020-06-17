@@ -32,4 +32,16 @@ return [
     'shop_now' => 'SHOP NOW',
     'sale_off' => 'Sale Off',
     'product' => 'Products',
+    'auth' => [
+        'account_login' => 'Account Login',
+        'password' => 'Password',
+        'require_email' => 'Email is require!',
+        'require_password' => 'Password is require!',
+        'remember_me' => 'Remember me',
+        'forgot_password' => 'Forgot password',
+        'login' => 'Login',
+        'logout' => 'Logout',
+        'profile' => 'Profile',
+        'login_fail' => 'Email or Password are wrong. Please try again',
+    ],
 ];

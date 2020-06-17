@@ -2,38 +2,37 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Models\User;
+use App\Enums\UserRoleEnums;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
-
-    use AuthenticatesUsers;
-
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function index()
     {
-        $this->middleware('guest')->except('logout');
+        return view('auth.login');
+    }
+
+    public function store(Request $request)
+    {
+        $login = [
+            'email' => $request->log_email,
+            'password' => $request->log_password,
+        ];
+
+        if(Auth::attempt($login))
+        {
+            if(auth()->user()->role == UserRoleEnums::User)
+            {
+                return redirect()->route('shop.index.index');
+            }
+        }
+        else
+        {
+            return redirect()->back()->with('messagelogin', trans('messages.auth.login_fail'))->withInput();
+        }
     }
 }

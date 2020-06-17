@@ -32,4 +32,16 @@ return [
     'shop_now' => 'MUA NGAY',
     'sale_off' => 'Giảm giá',
     'product' => 'Sản phẩm',
+    'auth' => [
+        'account_login' => 'Tài khoản đăng nhập',
+        'password' => 'Mật khẩu',
+        'require_email' => 'Email là bắt buộc!',
+        'require_password' => 'Mật khẩu là bắt buộc!',
+        'remember_me' => 'Nhớ mật khẩu',
+        'forgot_password' => 'Quên mật khẩu',
+        'login' => 'Đăng nhập',
+        'logout' => 'Đăng xuất',
+        'profile' => 'Thông tin',
+        'login_fail' => 'Sai email hoặc mật khẩu. Vui lòng thử lại'
+    ],
 ];
