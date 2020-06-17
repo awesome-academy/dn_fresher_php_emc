@@ -221,4 +221,11 @@
         $button.parent().find('input').val(newVal);
     });
 
+    $('.update-cart').on('click', function () {
+        $('.btn-update-cart.disappear').click();
+    });
+
+    $(window).on('load',function(){
+        $('#cartModal').modal('show');
+    });
 })(jQuery);

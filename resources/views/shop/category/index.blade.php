@@ -9,7 +9,7 @@
         <div class="product__item__pic set-bg" data-setbg="/assets/img/product/{{ $product->picture }}">
             <ul class="product__item__pic__hover">
                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                <li><a href="{{ route('shop.cart.fasting_add', $product->id) }}"><i class="fa fa-shopping-cart"></i></a></li>
             </ul>
         </div>
         <div class="product__item__text">

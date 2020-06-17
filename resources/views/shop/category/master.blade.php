@@ -32,14 +32,6 @@
             <div class="col-lg-3 col-md-5">
                 <div class="sidebar">
                     <div class="sidebar__item">
-                        <h4>{{ trans('messages.categories') }}</h4>
-                        <ul>
-                            @foreach ($categories as $category)
-                            <li><a href="#">{{ $category->name }}</a></li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <div class="sidebar__item">
                         <h4>{{ trans('messages.price') }}</h4>
                         <div class="price-range-wrap">
                             <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
@@ -142,7 +134,10 @@
                                         <div class="product__discount__percent">-{{ $discount }}%</div>
                                         <ul class="product__item__pic__hover">
                                             <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                            <li>
+                                                <a href="{{ route('shop.cart.fasting_add', $sale->id) }}">
+                                                <i class="fa fa-shopping-cart"></i></a>
+                                            </li>
                                         </ul>
                                     </div>
                                     <div class="product__discount__item__text">
