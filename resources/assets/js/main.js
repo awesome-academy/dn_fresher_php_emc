@@ -228,4 +228,10 @@
     $(window).on('load',function(){
         $('#cartModal').modal('show');
     });
+
+    $('.item-remove').click(function(){
+        var message = $(this).attr("data-confirm");
+
+        return confirm(message);
+    });
 })(jQuery);

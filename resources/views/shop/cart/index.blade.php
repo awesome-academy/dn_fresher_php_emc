@@ -27,7 +27,12 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="shoping__cart__table">
-                        <table>
+                        @if (empty(Cart::content()->toArray()))
+                        <div class="alert alert-success" role="alert">
+                            {{ trans('messages.cart_empty') }}
+                        </div>
+                        @endif
+                        <table class="{{ empty(Cart::content()->toArray()) ? 'disappear' : '' }}">
                             <thead>
                                 <tr>
                                     <th class="shoping__product">{{ trans('messages.product') }}</th>
@@ -64,7 +69,9 @@
                                         ${{ $price }}
                                     </td>
                                     <td class="shoping__cart__item__close">
-                                        <span class="icon_close"></span>
+                                        <a class="item-remove" href="{{ route('shop.cart.remove', $product->id) }}" data-confirm="{{ trans('messages.confirm_remove') }}">
+                                            <span class="icon_close"></span>
+                                        </a>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -79,7 +86,8 @@
                 <div class="col-lg-12">
                     <div class="shoping__cart__btns">
                         <a href="{{ route('category.index') }}" class="primary-btn cart-btn">{{ trans('messages.continue_shopping') }}</a>
-                        <a href="javascript:void(0)" class="primary-btn cart-btn cart-btn-right update-cart"></span>
+                        <a href="javascript:void(0)"
+                            class="primary-btn cart-btn cart-btn-right update-cart {{ empty(Cart::content()->toArray()) ? 'disappear' : '' }}">
                             {{ trans('messages.update_cart') }}
                         </a>
                     </div>

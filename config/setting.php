@@ -7,5 +7,6 @@ return [
     'key_token' => '_token',
     'key_add_cart' => 'add_cart',
     'key_update_cart' => 'update_cart',
+    'key_remove_cart' => 'remove_cart',
     'display_rate_condition' => 3,
 ];

@@ -61,7 +61,10 @@
                         @endif
                         <span>({{ $countReview }} {{ trans('messages.reviews') }})</span>
                     </div>
-                    <div class="product__details__price">${{ $product->price }}</div>
+                    <div class="product__details__price">
+                        ${{ $price }}
+                        @if (!empty($product->sales->toArray()))<span>${{ $product->price }}</span>@endif
+                    </div>
                     <p>{{ $product->description }}</p>
                     {!! Form::open(['method' => 'POST', 'url' => 'cart', 'class' => 'form-cart']) !!}
                     <div class="product__details__quantity">

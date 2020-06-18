@@ -49,7 +49,11 @@ return [
     'add_cart_fail' => 'Add product fail !',
     'update_cart_success' => 'Update cart success !',
     'update_cart_fail' => 'Update cart fail !',
+    'remove_cart_success' => 'Remove item success !',
+    'remove_cart_fail' => 'Remove item fail !',
     'enter_your_coupon' => 'Enter your coupon code',
+    'confirm_remove' => 'Are you sure you want to delete this item?',
+    'cart_empty' => "You haven't items in your shopping cart",
     'auth' => [
         'account_login' => 'Account Login',
         'password' => 'Password',
