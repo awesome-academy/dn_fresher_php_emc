@@ -15,4 +15,6 @@ interface ProductRepositoryInterface
     public function getOutSales();
 
     public function getPaginateByCategoryId($category_id);
+
+    public function findWithSales($product_id);
 }

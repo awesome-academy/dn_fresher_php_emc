@@ -2,4 +2,10 @@
 return [
     'hot_trend_limit' => 10,
     'paginate_products' => 9,
+    'default_weight' => 0,
+    'default_quantify' => 1,
+    'key_token' => '_token',
+    'key_add_cart' => 'add_cart',
+    'key_update_cart' => 'update_cart',
+    'display_rate_condition' => 3,
 ];

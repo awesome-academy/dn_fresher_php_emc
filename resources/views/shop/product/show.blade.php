@@ -51,7 +51,9 @@
                             @for ($i = 1; $i <= $arrRate[0]; $i++)
                                 <i class="fa fa-star"></i>
                             @endfor
-                            @if ($arrRate[1] > 3) <i class="fa fa-star-half-o"></i> @endif
+                            @if(isset($arrRate[1]) && $arrRate[1] > config('setting.display_rate_condition'))
+                                <i class="fa fa-star-half-o"></i>
+                            @endif
                         @else
                             @for ($i = 1; $i <= $product->rating; $i++)
                                 <i class="fa fa-star"></i>
@@ -61,14 +63,17 @@
                     </div>
                     <div class="product__details__price">${{ $product->price }}</div>
                     <p>{{ $product->description }}</p>
+                    {!! Form::open(['method' => 'POST', 'url' => 'cart', 'class' => 'form-cart']) !!}
                     <div class="product__details__quantity">
                         <div class="quantity">
                             <div class="pro-qty">
-                                <input type="text" value="1">
+                                {!! Form::text('amount', '1', []) !!}
                             </div>
                         </div>
                     </div>
-                    <a href="#" class="primary-btn">{{ trans('messages.add_to_cart') }}</a>
+                    {!! Form::hidden('product_id', $product->id, []) !!}
+                    {!! Form::submit(trans('messages.add_to_cart'), ['class' => 'primary-btn']) !!}
+                    {!! Form::close() !!}
                     <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                     <ul>
                         <li><b>{{ trans('messages.availability') }}</b> <span>{{ $product->status }}</span></li>

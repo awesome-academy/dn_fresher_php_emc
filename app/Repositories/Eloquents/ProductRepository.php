@@ -55,4 +55,13 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     public function getPaginateByCategoryId($category_id) {
         return Product::where('category_id', $category_id)->paginate(config('setting.paginate_products'));
     }
+
+    public function findWithSales($product_id) {
+        $now = Carbon::now()->toDateString();
+
+        return Product::with(['sales' => function($query) use ($now) {
+            $query->where('start_time', '<=', $now)
+            ->where('end_time', '>=', $now);
+        }])->find($product_id);
+    }
 }

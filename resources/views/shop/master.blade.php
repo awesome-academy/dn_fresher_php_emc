@@ -31,6 +31,7 @@
 
     <!-- Header Section Begin -->
     <header class="header">
+        @include('common.success')
         <div class="header__top">
             <div class="container">
                 <div class="row">
@@ -99,9 +100,19 @@
                     <div class="header__cart">
                         <ul>
                             <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            <li>
+                                <a href="{{ route('shop.cart.index') }}">
+                                <i class="fa fa-shopping-bag"></i><span>{{ Cart::content()->count() }}</span></a>
+                            </li>
                         </ul>
-                        <div class="header__cart__price">{{ trans('messages.cart') }}: <span>$150.00</span></div>
+                        @php $total = 0; @endphp
+                        @foreach (Cart::content() as $product)
+                            @php
+                                $price = $product->price * $product->qty;
+                                $total += $price;
+                            @endphp
+                        @endforeach
+                        <div class="header__cart__price">{{ trans('messages.cart') }}: <span>${{ $total }}</span></div>
                     </div>
                 </div>
             </div>
@@ -113,7 +124,7 @@
     <!-- Header Section End -->
 
     <!-- Hero Section Begin -->
-<section class="hero {{ Route::current()->getName() != 'shop.index.index' ? 'hero-normal' : ''}}">
+    <section class="hero {{ Route::current()->getName() != 'shop.index.index' ? 'hero-normal' : ''}}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
@@ -190,7 +201,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__about__logo">
-                            <a href="./index.html"><img src="/assets/img/logo.png" alt=""></a>
+                            <a href="{{ route('shop.index.index') }}"><img src="/assets/img/logo.png" alt=""></a>
                         </div>
                         <ul>
                             <li>Address: 16 Lý Thường Kiệt</li>
