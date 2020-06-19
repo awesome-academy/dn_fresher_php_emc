@@ -110,7 +110,7 @@
                             <li>{{ trans('messages.sub_total') }} <span>$0</span></li> <!-- Update when create apply coupon func -->
                             <li>{{ trans('messages.total') }} <span>${{ $total }}</span></li>
                         </ul>
-                        <a href="#" class="primary-btn">{{ trans('messages.proceed_to_checkout') }}</a>
+                        <a href="{{ route('order.index') }}" class="primary-btn">{{ trans('messages.proceed_to_checkout') }}</a>
                     </div>
                 </div>
             </div>

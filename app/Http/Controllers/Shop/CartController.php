@@ -39,7 +39,7 @@ class CartController extends Controller
         foreach ($request->toArray() as $key => $amount) {
             if ($key != config('setting.key_token')) {
                 $updateCart = $this->cartService->update($key, $amount);
-                if (isset($updateCart))
+                if (!isset($updateCart))
                     return redirect()->back()->with(config('setting.key_update_cart'), trans('messages.update_cart_fail'))->withInput();
             }
         }

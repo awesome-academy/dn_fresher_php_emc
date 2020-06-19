@@ -14,9 +14,12 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     }
 
     public function getHotTrend() {
+        $now = Carbon::now();
         $products = Product::withCount('orders')
-        ->orderBy('orders_count', 'desc')
-        ->orderBy('created_at', 'desc')
+        ->whereHas('orders', function($query) use ($now) {
+            $query->whereYear('created_at', $now->year)
+                ->whereMonth('created_at', $now->month);
+        })->orderBy('orders_count', 'desc')
         ->take(config('setting.hot_trend_limit'))->get();
 
         return $products;
