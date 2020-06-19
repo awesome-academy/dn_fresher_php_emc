@@ -36,6 +36,10 @@ Route::group(['middleware' => 'locale'], function () {
             'uses' => 'CartController@fastingAdd',
             'as' => 'shop.cart.fasting_add'
         ]);
+        Route::get('/cart-remove-{productId}',[
+            'uses' => 'CartController@removeProduct',
+            'as' => 'shop.cart.remove'
+        ]);
     });
 
     Route::namespace('Auth')->group(function() {

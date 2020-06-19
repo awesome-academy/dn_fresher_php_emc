@@ -1709,6 +1709,15 @@ ol {
     margin-bottom: 15px;
 }
 
+.product__details__price span {
+    display: inline-block;
+    font-weight: 400;
+    text-decoration: line-through;
+    margin-left: 10px;
+    font-size: 20px;
+    color: #b2b2b2;
+}
+
 .product__details__text p {
     margin-bottom: 45px;
 }

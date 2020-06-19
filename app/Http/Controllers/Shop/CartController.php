@@ -56,4 +56,14 @@ class CartController extends Controller
 
             return redirect()->back()->with(config('setting.key_add_cart'), trans('messages.add_cart_fail'))->withInput();
     }
+
+    public function removeProduct($product_id) {
+        $result = $this->cartService->remove($product_id);
+        if($result)
+
+            return redirect()->back()->with(config('setting.key_remove_cart'), trans('messages.remove_cart_success'))->withInput();
+        else
+
+            return redirect()->back()->with(config('setting.key_remove_cart'), trans('messages.remove_cart_fail'))->withInput();
+    }
 }

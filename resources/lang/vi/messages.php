@@ -49,7 +49,11 @@ return [
     'add_cart_fail' => 'Thêm sản phẩm thất bại !',
     'update_cart_success' => 'Cập nhật giỏ hàng thành công !',
     'update_cart_fail' => 'Cập nhật giỏ hàng thất bại !',
+    'remove_cart_success' => 'Xóa sản phẩm thành công !',
+    'remove_cart_fail' => 'Xóa sản phẩm thất bại !',
     'enter_your_coupon' => 'Nhập mã giảm giá của bạn',
+    'confirm_remove' => 'Bạn có chắc bạn muốn xóa mục này?',
+    'cart_empty' => "Bạn chưa có sản phẩm nào trong giỏ hàng",
     'auth' => [
         'account_login' => 'Tài khoản đăng nhập',
         'password' => 'Mật khẩu',

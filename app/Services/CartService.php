@@ -41,4 +41,15 @@ class CartService
 
         return Cart::update($item->rowId, $item->qty = $amount);
     }
+
+    public function remove($product_id) {
+        $countOldCart = Cart::content()->count();
+        $rows = Cart::search(function ($cartItem, $rowId) use ($product_id) {
+            return $cartItem->id == $product_id;
+        });
+        Cart::remove($rows->first()->rowId);
+        $countNewCart = Cart::content()->count();
+
+        return $countNewCart < $countOldCart ? true : false;
+    }
 }
