@@ -2142,8 +2142,19 @@ ol {
     border: 1px solid #ebebeb;
     padding-left: 20px;
     font-size: 16px;
-    color: #b2b2b2;
+    color: #6f6f6f;
     border-radius: 4px;
+}
+
+.place-order {
+    font-size: 18px;
+    letter-spacing: 2px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.alert.alert-danger ul {
+    list-style-type: none;
 }
 
 .checkout__input input.checkout__input__add {
@@ -2242,10 +2253,16 @@ ol {
     list-style: none;
 }
 
-.checkout__order ul li span {
+.checkout__order ul li span:not(:first-child) {
     font-weight: 700;
     float: right;
 }
+
+.checkout__order ul li span:first-child {
+    font-weight: 700;
+    color: #6f6f6f;
+}
+
 
 .checkout__order .checkout__order__subtotal {
     font-size: 18px;

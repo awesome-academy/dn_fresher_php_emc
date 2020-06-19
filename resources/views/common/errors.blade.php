@@ -7,10 +7,13 @@
         </ul>
     </div>
 @endif
-@if (Session::has('messagelogin'))
+@if (Session::has('messagelogin') || Session::has('message_check_auth'))
+@php
+    $keyMessage = Session::has('messagelogin') ? 'messagelogin' : 'message_check_auth';
+@endphp
     <div class="alert alert-danger">
         <ul>
-            <li>{{ Session::get('messagelogin')}}</li>
+            <li>{{ Session::get($keyMessage)}}</li>
         </ul>
     </div>
 @endif

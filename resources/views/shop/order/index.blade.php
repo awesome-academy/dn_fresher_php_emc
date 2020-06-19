@@ -32,56 +32,38 @@
                 </h6>
             </div>
         </div>
+        @include('common.errors')
         <div class="checkout__form">
             <h4>@lang('messages.billing_detail')</h4>
-            <form action="#">
+            {!! Form::open(['method' => 'POST', 'route' => 'order.store']) !!}
                 <div class="row">
                     <div class="col-lg-8 col-md-6">
                         <div class="checkout__input">
                             <p>@lang('messages.full_name')<span>*</span></p>
-                            <input type="text">
+                            {!! Form::text('fullname', Auth::check() ? Auth::user()->fullname : '', []) !!}
                         </div>
                         <div class="checkout__input">
                             <p>@lang('messages.address')<span>*</span></p>
-                            <input type="text"class="checkout__input__add">
+                            {!! Form::text('address', Auth::check() ? Auth::user()->address : '', ['class' => 'checkout__input__add', ]) !!}
                         </div>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="checkout__input">
                                     <p>@lang('messages.phone')<span>*</span></p>
-                                    <input type="text">
+                                    {!! Form::text('phone', Auth::check() ? Auth::user()->phone : '', []) !!}
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="checkout__input">
                                     <p>Email<span>*</span></p>
-                                    <input type="text">
+                                    {!! Form::text('', Auth::check() ? Auth::user()->email : '', ['disabled']) !!}
+                                    {!! Form::hidden('email', Auth::check() ? Auth::user()->email : '', []) !!}
                                 </div>
                             </div>
                         </div>
-                        <div class="checkout__input__checkbox">
-                            <label for="acc">
-                                @lang('messages.create_account')
-                                <input type="checkbox" id="acc">
-                                <span class="checkmark"></span>
-                            </label>
-                        </div>
-                        <p>@lang('messages.create_account_message')</p>
                         <div class="checkout__input">
-                            <p>@lang('messages.account_password')<span>*</span></p>
-                            <input type="text">
-                        </div>
-                        <div class="checkout__input__checkbox">
-                            <label for="diff-acc">
-                                @lang('messages.diff_address')
-                                <input type="checkbox" id="diff-acc">
-                                <span class="checkmark"></span>
-                            </label>
-                        </div>
-                        <div class="checkout__input">
-                            <p>@lang('messages.order_note')<span>*</span></p>
-                            <input type="text"
-                                placeholder="{{ trans('messages.order_note_message') }}">
+                            <p>@lang('messages.order_note')</p>
+                            {!! Form::text('note', '', ['placeholder' => trans('messages.order_note_message')]) !!}
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
@@ -98,18 +80,19 @@
                                     $total += $price;
                                 @endphp
                                 <li>
-                                    {{ $product->name }}&nbsp;({{ $product->qty }})
+                                    {{ $product->name }}&nbsp;<span>({{ $product->qty }})</span>
                                     <span>${{ $price }}</span>
                                 </li>
                                 @endforeach
                             </ul>
                             <div class="checkout__order__subtotal">@lang('messages.sub_total') <span>$0</span></div>
                             <div class="checkout__order__total">@lang('messages.total') <span>${{ $total }}</span></div>
-                            <button type="submit" class="site-btn">@lang('messages.place_order')</button>
+                            {!! Form::hidden('total', $total, []) !!}
+                            {!! Form::submit(trans('messages.place_order'), ['class' => 'site-btn place-order']) !!}
                         </div>
                     </div>
                 </div>
-            </form>
+            {!! Form::close() !!}
         </div>
     </div>
 </section>

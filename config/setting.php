@@ -8,5 +8,7 @@ return [
     'key_add_cart' => 'add_cart',
     'key_update_cart' => 'update_cart',
     'key_remove_cart' => 'remove_cart',
+    'key_order' => 'order',
     'display_rate_condition' => 3,
+    'user_unknown' => 'user_unknown.jpg',
 ];
