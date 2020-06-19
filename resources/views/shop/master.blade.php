@@ -89,10 +89,14 @@
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="{{ route('shop.index.index') }}">{{ trans('messages.home') }}</a></li>
-                            <li><a href="{{ route('category.index') }}">{{ trans('messages.categories') }}</a></li>
-                            <li><a href="./blog.html">{{ trans('messages.blog') }}</a></li>
-                            <li><a href="./contact.html">{{ trans('messages.contact') }}</a></li>
+                            <li class="{{ Route::current()->getName() == 'shop.index.index' ? 'active' : '' }}">
+                                <a href="{{ route('shop.index.index') }}">{{ trans('messages.home') }}</a>
+                            </li>
+                            <li class="{{ Route::current()->getName() == 'category.index' ? 'active' : '' }}">
+                                <a href="{{ route('category.index') }}">{{ trans('messages.categories') }}</a>
+                            </li>
+                            <li><a href="#">{{ trans('messages.blog') }}</a></li>
+                            <li><a href="#">{{ trans('messages.contact') }}</a></li>
                         </ul>
                     </nav>
                 </div>

@@ -40,6 +40,9 @@ Route::group(['middleware' => 'locale'], function () {
             'uses' => 'CartController@removeProduct',
             'as' => 'shop.cart.remove'
         ]);
+        Route::resource('order', 'OrderController')->only([
+            'index', 'store',
+        ]);
     });
 
     Route::namespace('Auth')->group(function() {
