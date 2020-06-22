@@ -45,4 +45,9 @@ class User extends Model implements AuthenticatableContract
     {
         return $this->belongsToMany(User::class, 'products_users_rating', 'user_id', 'product_id');
     }
+
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
 }

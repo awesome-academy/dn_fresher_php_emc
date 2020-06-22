@@ -4,12 +4,12 @@
 @endsection
 @section('auth_content')
 <div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
+    @include('common.errors')
     {!! Form::open(['method' => 'post', 'route' => 'login.store',
         'class' => 'login100-form validate-form flex-sb flex-w']) !!}
         <span class="login100-form-title p-b-32">
             {{ trans('messages.auth.account_login') }}
         </span>
-        @include('common.errors')
         <span class="txt1 p-b-11">
             Email
         </span>

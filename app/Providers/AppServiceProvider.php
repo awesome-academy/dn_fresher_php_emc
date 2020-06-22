@@ -11,6 +11,9 @@ class AppServiceProvider extends ServiceProvider
         'ProductRepository',
         'SaleRepository',
         'ProductUserRatingRepository',
+        'OrderRepository',
+        'OrderProductRepository',
+        'UserRepository',
     ];
 
     /**

@@ -1,12 +1,14 @@
 @if (Session::has(config('setting.key_add_cart'))
     || Session::has(config('setting.key_update_cart'))
-    || Session::has(config('setting.key_remove_cart')))
+    || Session::has(config('setting.key_remove_cart'))
+    || Session::has(config('setting.key_order')))
     @php
         $keyMessage = Session::has(config('setting.key_add_cart'))
             ? config('setting.key_add_cart')
             : (Session::has(config('setting.key_update_cart'))
                 ? config('setting.key_update_cart')
                 : config('setting.key_remove_cart'));
+        if (Session::has(config('setting.key_order'))) $keyMessage = config('setting.key_order');
     @endphp
     <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">

@@ -17,8 +17,8 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->check()) {
-            return redirect('/home');
+        if (!Auth::check()) {
+            return redirect()->route('login.index')->with('message_check_auth', trans('messages.check_auth'));
         }
 
         return $next($request);
