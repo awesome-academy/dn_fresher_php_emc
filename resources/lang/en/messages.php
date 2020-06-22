@@ -81,6 +81,9 @@ return [
     'email_require' => 'Email is require !',
     'password_require' => 'Password is require !',
     'check_auth' => 'Please log in to continue !',
+    'sort_by_price' => 'Sort By Price',
+    'increase' => 'Increase',
+    'decrease' => 'Decrease',
     'auth' => [
         'account_login' => 'Account Login',
         'password' => 'Password',

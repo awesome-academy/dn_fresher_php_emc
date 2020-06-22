@@ -11,4 +11,6 @@ return [
     'key_order' => 'order',
     'display_rate_condition' => 3,
     'user_unknown' => 'user_unknown.jpg',
+    'max_price' => 600,
+    'min_price' => 1,
 ];

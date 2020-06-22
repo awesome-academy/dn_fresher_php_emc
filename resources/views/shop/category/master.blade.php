@@ -35,15 +35,22 @@
                         <h4>{{ trans('messages.price') }}</h4>
                         <div class="price-range-wrap">
                             <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-                                data-min="10" data-max="540">
+                                data-min="{{ isset($min_price) ? $min_price : config('setting.max_price') }}"
+                                data-max="{{ isset($max_price) ? $max_price : config('setting.max_price') }}">
                                 <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
                                 <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
                                 <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
                             </div>
                             <div class="range-slider">
                                 <div class="price-input">
-                                    <input type="text" id="minamount">
-                                    <input type="text" id="maxamount">
+                                    {!! Form::open(['method' => 'POST', 'route' => 'search.sort_byprice', 'id' => 'form-sort-price']) !!}
+                                    <span>$</span>{!! Form::text('min_price', '', ['id' => 'minamount']) !!}
+                                    <span>$</span>{!! Form::text('max_price', '', ['id' => 'maxamount']) !!}
+                                    @if (isset($category_id))
+                                        {!! Form::hidden('category_id', $category_id, []) !!}
+                                    @endif
+                                    {!! Form::submit(trans('messages.search'), ['class' => 'btn_search-price']) !!}
+                                    {!! Form::close() !!}
                                 </div>
                             </div>
                         </div>
@@ -157,11 +164,17 @@
                     <div class="row">
                         <div class="col-lg-4 col-md-5">
                             <div class="filter__sort">
-                                <span>Sort By</span>
-                                <select>
-                                    <option value="0">Default</option>
-                                    <option value="0">Default</option>
-                                </select>
+                                <span>@lang('messages.sort_by_price')</span>
+                                @php $valueSort = !isset($type) ? 1 : ($type == 'DESC' ? 1 : 0) ; @endphp
+                                {!! Form::open(['method' => 'POST', 'route' => 'search.sort_bytype']) !!}
+                                {!! Form::select('sort_bytype', [
+                                    0 => trans('messages.increase'),
+                                    1 => trans('messages.decrease')
+                                    ], $valueSort, ['onchange' => 'this.form.submit()']) !!}
+                                @if (isset($category_id))
+                                    {!! Form::hidden('category_id', $category_id, []) !!}
+                                @endif
+                                {!! Form::close() !!}
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4">
@@ -169,12 +182,12 @@
                                 <h6><span>{{ $products->count() }}</span>{{ trans('messages.product') }}</h6>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-3">
+                        {{-- <div class="col-lg-4 col-md-3">
                             <div class="filter__option">
                                 <span class="icon_grid-2x2"></span>
                                 <span class="icon_ul"></span>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="row">

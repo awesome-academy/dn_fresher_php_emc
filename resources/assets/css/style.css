@@ -1134,13 +1134,18 @@ ol {
     content: "";
 }
 
-.price-range-wrap .range-slider .price-input input {
+.price-range-wrap .range-slider .price-input input,
+.price-input span {
     font-size: 16px;
     color: #dd2222;
     font-weight: 700;
     max-width: 20%;
     border: none;
     display: inline-block;
+}
+
+.btn_search-price {
+    min-width: max-content;
 }
 
 .price-range-wrap .price-range {
@@ -2155,6 +2160,10 @@ ol {
 
 .alert.alert-danger ul {
     list-style-type: none;
+}
+
+.filter__sort form {
+    display: inline;
 }
 
 .checkout__input input.checkout__input__add {

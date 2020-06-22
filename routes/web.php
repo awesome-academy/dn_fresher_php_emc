@@ -45,6 +45,14 @@ Route::group(['middleware' => 'locale'], function () {
                 'index', 'store',
             ]);
         });
+        Route::post('/sort-bytype',[
+            'uses' => 'SearchController@sortByType',
+            'as' => 'search.sort_bytype'
+        ]);
+        Route::post('/sort-byprice',[
+            'uses' => 'SearchController@sortByPrice',
+            'as' => 'search.sort_byprice'
+        ]);
     });
 
     Route::namespace('Auth')->group(function() {
