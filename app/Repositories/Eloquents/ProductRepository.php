@@ -19,7 +19,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
         ->whereHas('orders', function($query) use ($now) {
             $query->whereYear('created_at', $now->year)
                 ->whereMonth('created_at', $now->month);
-        })->orderBy('orders_count', 'desc')
+        })->orderBy('orders_count', 'DESC')
         ->take(config('setting.hot_trend_limit'))->get();
 
         return $products;
@@ -52,11 +52,14 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
         };
 
         return Product::whereDoesntHave('sales', $queryInTime)
+        ->orderBy('price', 'DESC')
         ->paginate(config('setting.paginate_products'));
     }
 
     public function getPaginateByCategoryId($category_id) {
-        return Product::where('category_id', $category_id)->paginate(config('setting.paginate_products'));
+        return Product::where('category_id', $category_id)
+            ->orderBy('price', 'DESC')
+            ->paginate(config('setting.paginate_products'));
     }
 
     public function findWithSales($product_id) {
@@ -66,5 +69,44 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
             $query->where('start_time', '<=', $now)
             ->where('end_time', '>=', $now);
         }])->find($product_id);
+    }
+
+    public function getByType($type) {
+        $now = Carbon::now()->toDateString();
+        $queryInTime = function($query) use ($now) {
+            $query->where('start_time', '<=', $now)
+            ->where('end_time', '>=', $now);
+        };
+
+        return Product::whereDoesntHave('sales', $queryInTime)
+        ->orderBy('price', $type)
+        ->paginate(config('setting.paginate_products'));
+    }
+
+    public function getByTypeWithCategory($category_id, $type) {
+        return Product::where('category_id', $category_id)
+            ->orderBy('price', $type)->paginate(config('setting.paginate_products'));
+    }
+
+    public function getByPrice($minPrice, $maxPrice) {
+        $now = Carbon::now()->toDateString();
+        $queryInTime = function($query) use ($now) {
+            $query->where('start_time', '<=', $now)
+            ->where('end_time', '>=', $now);
+        };
+
+        return Product::whereDoesntHave('sales', $queryInTime)
+            ->where('price', '>=', $minPrice)
+            ->where('price', '<=', $maxPrice)
+            ->orderBy('price', 'DESC')
+            ->paginate(config('setting.paginate_products'));
+    }
+
+    public function getByPriceWithCategory($minPrice, $maxPrice, $category_id) {
+        return Product::where('category_id', $category_id)
+            ->where('price', '>=', $minPrice)
+            ->where('price', '<=', $maxPrice)
+            ->orderBy('price', 'DESC')
+            ->paginate(config('setting.paginate_products'));
     }
 }

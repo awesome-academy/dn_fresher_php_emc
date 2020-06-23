@@ -17,4 +17,12 @@ interface ProductRepositoryInterface
     public function getPaginateByCategoryId($category_id);
 
     public function findWithSales($product_id);
+
+    public function getByType($type);
+
+    public function getByTypeWithCategory($category_id, $type);
+
+    public function getByPrice($minPrice, $maxPrice);
+
+    public function getByPriceWithCategory($minPrice, $maxPrice, $category_id);
 }

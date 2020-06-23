@@ -80,6 +80,9 @@ return [
     'email_require' => 'Email là bắt buộc !',
     'password_require' => 'Mật khẩu là bắt buộc !',
     'check_auth' => 'Vui lòng đăng nhập để tiếp tục !',
+    'sort_by_price' => 'Sắp xếp theo giá',
+    'increase' => 'Tăng dần',
+    'decrease' => 'Giảm dần',
     'auth' => [
         'account_login' => 'Tài khoản đăng nhập',
         'password' => 'Mật khẩu',

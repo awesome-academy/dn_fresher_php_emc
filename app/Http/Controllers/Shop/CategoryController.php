@@ -37,6 +37,6 @@ class CategoryController extends Controller
         $categoryName = $this->categoryRepository->find($category_id)->name;
         $products = $this->productRepository->getPaginateByCategoryId($category_id);
 
-        return view('shop.category.show', compact('categories', 'sales', 'products', 'categoryName'));
+        return view('shop.category.show', compact('categories', 'sales', 'products', 'categoryName', 'category_id'));
     }
 }
