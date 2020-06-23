@@ -35,7 +35,7 @@
                         <h4>{{ trans('messages.price') }}</h4>
                         <div class="price-range-wrap">
                             <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-                                data-min="{{ isset($min_price) ? $min_price : config('setting.max_price') }}"
+                                data-min="{{ isset($min_price) ? $min_price : config('setting.min_price') }}"
                                 data-max="{{ isset($max_price) ? $max_price : config('setting.max_price') }}">
                                 <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
                                 <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
@@ -57,66 +57,28 @@
                     </div>
                     <div class="sidebar__item">
                         <div class="latest-product__text">
-                            <h4>Latest Products</h4>
+                            <h4>@lang('messages.latest_product')</h4>
                             <div class="latest-product__slider owl-carousel">
-                                <div class="latest-prdouct__slider__item">
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="/assets/img/latest-product/lp-1.jpg" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>Crab Pool Security</h6>
-                                            <span>$30.00</span>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="/assets/img/latest-product/lp-2.jpg" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>Crab Pool Security</h6>
-                                            <span>$30.00</span>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="/assets/img/latest-product/lp-3.jpg" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>Crab Pool Security</h6>
-                                            <span>$30.00</span>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="latest-prdouct__slider__item">
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="/assets/img/latest-product/lp-1.jpg" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>Crab Pool Security</h6>
-                                            <span>$30.00</span>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="/assets/img/latest-product/lp-2.jpg" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>Crab Pool Security</h6>
-                                            <span>$30.00</span>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="/assets/img/latest-product/lp-3.jpg" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>Crab Pool Security</h6>
-                                            <span>$30.00</span>
-                                        </div>
-                                    </a>
-                                </div>
+                                @foreach ($latestProducts as $category)
+                                    @if ($category->products->count() != 0)
+                                    @php
+                                        $count = $category->products->count() > 5 ? 5 : $category->products->count();
+                                    @endphp
+                                    <div class="latest-prdouct__slider__item">
+                                        @for ($i = 0; $i <= $count - 1; $i++)
+                                        <a href="{{ route('product.show', $category->products[$i]->id) }}" class="latest-product__item">
+                                            <div class="latest-product__item__pic">
+                                                <img src="/assets/img/product/{{ $category->products[$i]->picture }}">
+                                            </div>
+                                            <div class="latest-product__item__text">
+                                                <h6>{{ $category->products[$i]->name }}</h6>
+                                                <span>${{ $category->products[$i]->price }}</span>
+                                            </div>
+                                        </a>
+                                        @endfor
+                                    </div>
+                                    @endif
+                                @endforeach
                             </div>
                         </div>
                     </div>

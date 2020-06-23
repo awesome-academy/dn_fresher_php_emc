@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="description" content="Flower Shop">
     <meta name="keywords" content="Flower Shop">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
@@ -32,6 +33,7 @@
     <!-- Header Section Begin -->
     <header class="header">
         @include('common.success')
+        @include('common.errors')
         <div class="header__top">
             <div class="container">
                 <div class="row">
@@ -161,9 +163,9 @@
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
-                            <form action="#">
-                                <input type="text" placeholder="{{ trans('messages.what_need') }}">
-                                <button type="submit" class="site-btn">{{ trans('messages.search') }}</button>
+                            <form>
+                                <input name="search" class="search-input" type="text" placeholder="{{ trans('messages.what_need') }}" autocomplete="off">
+                                <button class="site-btn">{{ trans('messages.search') }}</button>
                             </form>
                         </div>
                         <div class="hero__search__phone">
@@ -176,13 +178,14 @@
                             </div>
                         </div>
                     </div>
+
                     @if (Route::current()->getName() == 'shop.index.index')
                     <div class="hero__item set-bg" data-setbg="/assets/img/hero/banner.jpg">
                         <div class="hero__text">
                             <span>{{ trans('messages.fresh_flower')}}</span>
                             <h2>{{ trans('messages.flowers')}} <br />{{ trans('messages.fresh')}}</h2>
                             <p>{{ trans('messages.free_pickup_delivery')}}</p>
-                            <a href="#" class="primary-btn">{{ trans('messages.shop_now') }}</a>
+                            <a href="{{ route('category.index') }}" class="primary-btn">{{ trans('messages.shop_now') }}</a>
                         </div>
                     </div>
                     @endif
@@ -275,6 +278,7 @@
     {{ Html::script(asset('assets/js/mixitup.min.js')) }}
     {{ Html::script(asset('assets/js/owl.carousel.min.js')) }}
     {{ Html::script(asset('assets/js/main.js')) }}
+    {{ Html::script(asset('assets/js/typeahead.bundle.js')) }}
 </body>
 
 </html>

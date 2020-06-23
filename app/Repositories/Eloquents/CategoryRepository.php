@@ -15,4 +15,10 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
     public function getAllWithChildren() {
         return Category::with('children')->where('parent_id', 0)->get();
     }
+
+    public function getWithLatest() {
+        return Category::with(['products' => function ($query) {
+            $query->orderBy('id', 'DESC');
+        }])->get();
+    }
 }

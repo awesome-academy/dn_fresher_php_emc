@@ -16,4 +16,17 @@ class ProductUserRatingRepository extends BaseRepository implements ProductUserR
     public function countRatingByProductId($product_id) {
         return ProductUserRating::where('product_id', $product_id)->count();
     }
+
+    public function getMediumRating($productId) {
+        $arrRating = ProductUserRating::select('rating_point')->where('product_id', $productId)->get();
+        $count = 0;
+        foreach ($arrRating as $point) {
+            $count += $point->rating_point;
+        }
+        return $count / $arrRating->count();
+    }
+
+    public function getWithUser($productId) {
+        return ProductUserRating::with('user')->where('product_id', $productId)->get();
+    }
 }

@@ -109,4 +109,15 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
             ->orderBy('price', 'DESC')
             ->paginate(config('setting.paginate_products'));
     }
+
+    public function searchByName($key) {
+        return Product::where('name', 'like', '%' . $key . '%')->get();
+    }
+
+    public function getWithCategory() {
+        return Product::with('category')
+            ->where('rating', '>=', '4.5')
+            ->where('rating', '<=', '5')
+            ->take(20)->get();
+    }
 }

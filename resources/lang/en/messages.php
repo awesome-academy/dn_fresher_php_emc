@@ -84,6 +84,12 @@ return [
     'sort_by_price' => 'Sort By Price',
     'increase' => 'Increase',
     'decrease' => 'Decrease',
+    'feature_products' => 'Featured Product',
+    'all' => 'All',
+    'thanks_review' => 'Thanks for your review !',
+    'review_fail' => 'Review Fail',
+    'content_review' => 'Leave your comments here',
+    'latest_product' => 'Latest Products',
     'auth' => [
         'account_login' => 'Account Login',
         'password' => 'Password',

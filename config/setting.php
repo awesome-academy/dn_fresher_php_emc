@@ -9,6 +9,7 @@ return [
     'key_update_cart' => 'update_cart',
     'key_remove_cart' => 'remove_cart',
     'key_order' => 'order',
+    'key_review' => 'product_review',
     'display_rate_condition' => 3,
     'user_unknown' => 'user_unknown.jpg',
     'max_price' => 600,

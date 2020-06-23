@@ -5,27 +5,32 @@ namespace App\Http\Controllers\Shop;
 use Session;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Repositories\Interfaces\CategoryRepositoryInterface as CategoryRepository;
-use App\Repositories\Interfaces\ProductRepositoryInterface as ProductRepository;
+use App\Services\MenuService;
+use App\Services\ProductService;
 
 class IndexController extends Controller
 {
     protected $categoryRepository;
     protected $productRepository;
+    protected $menuService;
+    protected $productService;
+    protected $categoryService;
 
     public function __construct(
-        CategoryRepository $categoryRepository,
-        ProductRepository $productRepository) {
-        $this->categoryRepository = $categoryRepository;
-        $this->productRepository = $productRepository;
+        MenuService $menuService,
+        ProductService $productService) {
+        $this->menuService = $menuService;
+        $this->productService = $productService;
     }
 
     public function index()
     {
-        $categories = $this->categoryRepository->getAllWithChildren();
-        $hotTrendProduct = $this->productRepository->getHotTrend();
+        $menu = $this->menuService->menuHeader();
+        $categories = $menu['categories'];
+        $hotTrendProduct = $this->productService->getHotTrend();
+        $featureProducts = $this->productService->getWithCategory();
 
-        return view('shop.index.index', compact('categories', 'hotTrendProduct'));
+        return view('shop.index.index', compact('categories', 'hotTrendProduct', 'featureProducts'));
     }
 
     public function changeLanguage($language)

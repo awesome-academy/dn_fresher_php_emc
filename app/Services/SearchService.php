@@ -24,4 +24,8 @@ class SearchService
         else
             return $this->productRepository->getByPrice($minPrice, $maxPrice);
     }
+
+    public function searchByNameProduct($key) {
+        return $this->productRepository->searchByName($key);
+    }
 }

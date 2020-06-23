@@ -7,9 +7,13 @@
         </ul>
     </div>
 @endif
-@if (Session::has('messagelogin') || Session::has('message_check_auth'))
+@if (Session::has('messagelogin') || Session::has('message_check_auth') || Session::has('message_review'))
 @php
-    $keyMessage = Session::has('messagelogin') ? 'messagelogin' : 'message_check_auth';
+    $keyMessage = Session::has('messagelogin')
+        ? 'messagelogin'
+        : (Session::has('message_check_auth')
+            ? 'message_check_auth'
+            : 'message_review');
 @endphp
     <div class="alert alert-danger">
         <ul>
