@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class ProductUserRating extends Model
@@ -14,5 +15,11 @@ class ProductUserRating extends Model
         'product_id',
         'user_id',
         'rating_point',
+        'content'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

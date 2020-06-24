@@ -27,8 +27,9 @@ class CategoryController extends Controller
         $categories = $this->categoryRepository->getAllWithChildren();
         $sales = $this->productRepository->getSalesInTime();
         $products = $this->productRepository->getOutSales();
+        $latestProducts = $this->categoryRepository->getWithLatest();
 
-        return view('shop.category.index', compact('categories', 'sales', 'products'));
+        return view('shop.category.index', compact('categories', 'sales', 'products', 'latestProducts'));
     }
 
     public function show($category_id) {
@@ -36,7 +37,8 @@ class CategoryController extends Controller
         $sales = $this->productRepository->getSalesInTime();
         $categoryName = $this->categoryRepository->find($category_id)->name;
         $products = $this->productRepository->getPaginateByCategoryId($category_id);
+        $latestProducts = $this->categoryRepository->getWithLatest();
 
-        return view('shop.category.show', compact('categories', 'sales', 'products', 'categoryName', 'category_id'));
+        return view('shop.category.show', compact('categories', 'sales', 'products', 'categoryName', 'category_id', 'latestProducts'));
     }
 }

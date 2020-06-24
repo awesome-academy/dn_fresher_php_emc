@@ -18,7 +18,7 @@ class CreateProductsUsersRatingTable extends Migration
             $table->bigInteger('product_id');
             $table->bigInteger('user_id');
             $table->float('rating_point');
-            $table->string('content');
+            $table->string('content')->nullable();
             $table->timestamps();
         });
     }

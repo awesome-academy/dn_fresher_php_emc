@@ -234,4 +234,43 @@
 
         return confirm(message);
     });
+
+    //search engine
+    $(document).ready(function($) {
+        var engine = new Bloodhound({
+            remote: {
+                url: '/search/name?value=%QUERY%',
+                wildcard: '%QUERY%'
+            },
+            datumTokenizer: Bloodhound.tokenizers.whitespace('value'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace
+        });
+
+        $(".search-input").typeahead({
+            hint: true,
+            highlight: true,
+            minLength: 1
+        }, [
+            {
+                source: engine.ttAdapter(),
+                name: 'products-name',
+                display: function(data) {
+                    return data.name;
+                },
+                templates: {
+                    empty: [
+                        '<div class="list-group-item nothing-found">Nothing found.</div>'
+                    ],
+                    suggestion: function (data) {
+                        return '<a href="/product/' + data.id + '" class="list-group-item">' + data.name + '</a>';
+                    }
+                }
+            }
+        ]);
+
+        $('.star').on('change', function() {
+            let point = $(this).val();
+            $('#input-point').val(point);
+        });
+    });
 })(jQuery);

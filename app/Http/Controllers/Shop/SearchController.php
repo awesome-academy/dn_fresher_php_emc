@@ -63,4 +63,11 @@ class SearchController extends Controller
         return view('shop.category.index', compact('categories', 'products','categoryName',
             'sales', 'category_id', 'min_price', 'max_price'));
     }
+
+    public function searchByName(Request $request)
+    {
+        $products = $this->searchService->searchByNameProduct($request->value);
+
+        return response()->json($products);
+    }
 }

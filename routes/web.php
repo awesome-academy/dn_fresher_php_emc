@@ -44,6 +44,7 @@ Route::group(['middleware' => 'locale'], function () {
             Route::resource('order', 'OrderController')->only([
                 'index', 'store',
             ]);
+            Route::post('/rating', 'ProductController@rating');
         });
         Route::post('/sort-bytype',[
             'uses' => 'SearchController@sortByType',
@@ -53,6 +54,7 @@ Route::group(['middleware' => 'locale'], function () {
             'uses' => 'SearchController@sortByPrice',
             'as' => 'search.sort_byprice'
         ]);
+        Route::get('/search/name', 'SearchController@searchByName');
     });
 
     Route::namespace('Auth')->group(function() {

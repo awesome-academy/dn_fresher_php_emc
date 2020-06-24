@@ -83,6 +83,12 @@ return [
     'sort_by_price' => 'Sắp xếp theo giá',
     'increase' => 'Tăng dần',
     'decrease' => 'Giảm dần',
+    'feature_products' => 'Sản phẩm nổi bật',
+    'all' => 'Tất cả',
+    'thanks_review' => 'Cảm ơn vì bạn đã đánh gía !',
+    'review_fail' => 'Đánh giá thất bại',
+    'content_review' => 'Để lại ý kiến của bạn ở đây',
+    'latest_product' => 'Sản phẩm mới',
     'auth' => [
         'account_login' => 'Tài khoản đăng nhập',
         'password' => 'Mật khẩu',

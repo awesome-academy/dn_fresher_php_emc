@@ -25,4 +25,8 @@ interface ProductRepositoryInterface
     public function getByPrice($minPrice, $maxPrice);
 
     public function getByPriceWithCategory($minPrice, $maxPrice, $category_id);
+
+    public function searchByName($key);
+
+    public function getWithCategory();
 }

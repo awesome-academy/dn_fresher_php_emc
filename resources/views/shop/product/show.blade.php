@@ -113,9 +113,47 @@
                         </div>
                         <div class="tab-pane" id="tabs-3" role="tabpanel">
                             <div class="product__details__tab__desc">
-                                {{-- <h6>Products Infomation</h6>
-                                <p>Vestibulum ac diam sit amet</p> --}}
+                                <div class="rating" data-product-id={{ $product->id }}
+                                    data-user-id="{{ Auth::check() ? Auth::user()->id : '' }}">
+                                    @for ($i = 5; $i >= 1; $i--)
+                                    @php $j = $i - 1 == 0 ? '' : $i - 1; $haft = $i - 1 + 0.5; @endphp
+                                    <input class="star" type="radio" id="star{{$i}}" name="rating" value="{{$i}}" />
+                                    <label class= "full" for="star{{$i}}"></label>
+
+                                    <input class="star" type="radio" id="star{{$j}}half" name="rating" value="{{$haft}}" />
+                                    <label class="half" for="star{{$j}}half"></label>
+                                    @endfor
+                                </div><br><br><br>
+                                {!! Form::open(['method' => 'POST', 'url' => 'rating']) !!}
+                                {!! Form::hidden('point', '5', ['id' => 'input-point']) !!}
+                                {!! Form::hidden('product_id', $product->id, []) !!}
+                                <div class="review-box">
+                                    <div class="checkout__input">
+                                        {!! Form::text('content', '', ['placeholder' => trans('messages.content_review')]) !!}
+                                    </div>
+                                    {!! Form::submit('Submit', ['class' => 'site-btn place-order']) !!}
+                                </div>
+                                {!! Form::close() !!}
                             </div>
+                            <div class="comments-list">
+                                @foreach ($reviews as $review)
+                                <div class="media">
+                                    <div class="media-left">
+                                        <div class="media-object">
+                                        <img src="/assets/img/user/{{ $review->user->avatar }}" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">{{ $review->user->fullname }}&nbsp;
+                                            <span>({{ $review->rating_point }}&#9733;)</span>
+                                        </h4>
+                                        <div>{{ $review->content }}</div>
+                                    </div>
+                                </div>
+                                @endforeach
+
+
+                              </div>
                         </div>
                     </div>
                 </div>
@@ -124,7 +162,9 @@
     </div>
 </section>
 <!-- Product Details Section End -->
+<style>
 
+</style>
 <!-- Related Product Section Begin -->
 <section class="related-product">
     <div class="container">

@@ -68,4 +68,9 @@ class Product extends Model
     {
         return number_format($price, 2, '.', '');
     }
+
+    public function setRatingAttribute($rating)
+    {
+        $this->attributes['rating'] = number_format($rating, 2, '.', '');
+    }
 }

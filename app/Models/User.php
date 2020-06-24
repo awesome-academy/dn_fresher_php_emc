@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Auth\Authenticatable;
 use App\Models\Comment;
+use App\Models\ProductUserRating;
 
 class User extends Model implements AuthenticatableContract
 {
@@ -49,5 +50,10 @@ class User extends Model implements AuthenticatableContract
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = bcrypt($password);
+    }
+
+    public function productRatings()
+    {
+        return $this->hasMany(ProductUserRating::class);
     }
 }
